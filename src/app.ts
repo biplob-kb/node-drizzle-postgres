@@ -1,9 +1,13 @@
 import express, { NextFunction, Request, Response } from "express";
 import createError, { HttpError } from "http-errors";
+import bodyParser from "body-parser";
 import { errorResponse } from "./utils/responseSender";
 import router from "./routes";
 
 const app = express();
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use("/api/v1", router);
 
